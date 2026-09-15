@@ -1,37 +1,70 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Minha Loja - Início</title>
 
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Biblioteca do Supabase -->
+    <!-- Biblioteca oficial do Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
 
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+
     <header>
-        <div class="logo">Minha Loja</div>
+
+        <div class="logo">
+            Minha Loja
+        </div>
 
         <nav>
-            <a href="index.html">Início</a>
-            <a href="produtos.html">Produtos</a>
-            <a href="sobre.html">Sobre</a>
-            <a href="cadastro.html">Cadastre-se</a>
-            <a href="contato.html">Contato</a>
+
+            <a href="index.html">
+                Início
+            </a>
+
+            <a href="produtos.html">
+                Produtos
+            </a>
+
+            <a href="sobre.html">
+                Sobre
+            </a>
+
+            <a href="cadastro.html">
+                Cadastre-se
+            </a>
+
+            <a href="contato.html">
+                Contato
+            </a>
+
         </nav>
+
     </header>
 
+
+    <!-- =========================
+         CONTEÚDO PRINCIPAL
+    ========================== -->
 
     <main>
 
         <section class="hero">
 
-            <h1>Os Melhores Produtos com os Melhores Preços</h1>
+            <h1>
+                Os Melhores Produtos com os Melhores Preços
+            </h1>
 
             <p>
                 Encontre ofertas exclusivas e entrega rápida para todo o Brasil.
@@ -43,69 +76,164 @@
 
         </section>
 
+
+        <!-- Área para mostrar o status do Supabase -->
+
+        <section>
+
+            <p id="status-supabase">
+                Verificando conexão com o banco de dados...
+            </p>
+
+        </section>
+
     </main>
 
 
+    <!-- =========================
+         RODAPÉ
+    ========================== -->
+
     <footer>
+
         <p>
             &copy; 2026 Minha Loja - Todos os direitos reservados.
         </p>
+
     </footer>
 
 
     <!-- =====================================================
-         CONEXÃO COM SUPABASE
-         ===================================================== -->
+         CONEXÃO COM O SUPABASE
+    ====================================================== -->
 
     <script>
 
-        // URL do seu projeto Supabase
-        const SUPABASE_URL = "https://SEU-PROJETO.supabase.co";
+        /*
+         * ==================================================
+         * CONFIGURAÇÃO DO SUPABASE
+         * ==================================================
+         *
+         * SUBSTITUA:
+         *
+         * 1. SUPABASE_URL
+         * 2. SUPABASE_KEY
+         *
+         * pelos dados do seu projeto.
+         */
 
-        // Chave pública do seu projeto Supabase
-        const SUPABASE_KEY = "SUA_CHAVE_PUBLICA";
 
-        // Cria a conexão com o banco
-        const supabaseClient = supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
+        // URL do projeto Supabase
+        const SUPABASE_URL =
+            "https://SEU-PROJETO.supabase.co";
 
 
-        // Teste de conexão
+        // Chave pública do Supabase
+        const SUPABASE_KEY =
+            "SUA_CHAVE_PUBLICA";
+
+
+        /*
+         * ==================================================
+         * CRIAR CONEXÃO
+         * ==================================================
+         */
+
+        const supabaseClient =
+            supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+
+        /*
+         * ==================================================
+         * TESTAR CONEXÃO COM A TABELA PRODUTOS
+         * ==================================================
+         */
+
         async function testarConexao() {
 
-            const { data, error } = await supabaseClient
-                .from("produtos")
-                .select("*")
-                .limit(1);
-
-            if (error) {
-
-                console.error(
-                    "Erro ao conectar com o Supabase:",
-                    error
+            const status =
+                document.getElementById(
+                    "status-supabase"
                 );
 
-                return;
+
+            try {
+
+                const { data, error } =
+                    await supabaseClient
+                        .from("produtos")
+                        .select("*")
+                        .limit(1);
+
+
+                /*
+                 * Se houver erro
+                 */
+
+                if (error) {
+
+                    console.error(
+                        "Erro Supabase:",
+                        error
+                    );
+
+                    status.innerText =
+                        "❌ Erro ao conectar ao Supabase.";
+
+                    return;
+                }
+
+
+                /*
+                 * Conexão realizada
+                 */
+
+                console.log(
+                    "✅ Supabase conectado com sucesso!"
+                );
+
+
+                console.log(
+                    "Produtos encontrados:",
+                    data
+                );
+
+
+                status.innerText =
+                    "✅ Banco de dados conectado com sucesso!";
+
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro:",
+                    erro
+                );
+
+
+                status.innerText =
+                    "❌ Não foi possível conectar ao banco.";
+
             }
 
-            console.log(
-                "Supabase conectado com sucesso!"
-            );
-
-            console.log(
-                "Produto encontrado:",
-                data
-            );
         }
 
 
-        // Executa o teste
+        /*
+         * ==================================================
+         * EXECUTAR TESTE
+         * ==================================================
+         */
+
         testarConexao();
 
     </script>
 
+
 </body>
+
 </html>
 ```
