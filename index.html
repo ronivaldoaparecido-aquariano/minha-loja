@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Minha Loja - Início</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <!-- Biblioteca do Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
 <body>
+
     <header>
         <div class="logo">Minha Loja</div>
+
         <nav>
             <a href="index.html">Início</a>
             <a href="produtos.html">Produtos</a>
@@ -18,16 +26,86 @@
         </nav>
     </header>
 
+
     <main>
+
         <section class="hero">
+
             <h1>Os Melhores Produtos com os Melhores Preços</h1>
-            <p>Encontre ofertas exclusivas e entrega rápida para todo o Brasil.</p>
-            <a href="produtos.html" class="btn">Ver Produtos</a>
+
+            <p>
+                Encontre ofertas exclusivas e entrega rápida para todo o Brasil.
+            </p>
+
+            <a href="produtos.html" class="btn">
+                Ver Produtos
+            </a>
+
         </section>
+
     </main>
 
+
     <footer>
-        <p>&copy; 2026 Minha Loja - Todos os direitos reservados.</p>
+        <p>
+            &copy; 2026 Minha Loja - Todos os direitos reservados.
+        </p>
     </footer>
+
+
+    <!-- =====================================================
+         CONEXÃO COM SUPABASE
+         ===================================================== -->
+
+    <script>
+
+        // URL do seu projeto Supabase
+        const SUPABASE_URL = "https://SEU-PROJETO.supabase.co";
+
+        // Chave pública do seu projeto Supabase
+        const SUPABASE_KEY = "SUA_CHAVE_PUBLICA";
+
+        // Cria a conexão com o banco
+        const supabaseClient = supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+        // Teste de conexão
+        async function testarConexao() {
+
+            const { data, error } = await supabaseClient
+                .from("produtos")
+                .select("*")
+                .limit(1);
+
+            if (error) {
+
+                console.error(
+                    "Erro ao conectar com o Supabase:",
+                    error
+                );
+
+                return;
+            }
+
+            console.log(
+                "Supabase conectado com sucesso!"
+            );
+
+            console.log(
+                "Produto encontrado:",
+                data
+            );
+        }
+
+
+        // Executa o teste
+        testarConexao();
+
+    </script>
+
 </body>
 </html>
+```
