@@ -1,44 +1,234 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Loja - Cadastre-se</title>
+
+    <title>Minha Loja - Cadastro de Produtos</title>
+
+    <!-- Seu CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Biblioteca Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
 <body>
+
+    <!-- ============================
+         CABEÇALHO
+    ============================= -->
+
     <header>
-        <div class="logo">Minha Loja</div>
+
+        <div class="logo">
+            Minha Loja
+        </div>
+
         <nav>
+
             <a href="index.html">Início</a>
+
             <a href="produtos.html">Produtos</a>
+
             <a href="sobre.html">Sobre</a>
+
             <a href="cadastro.html">Cadastre-se</a>
+
             <a href="contato.html">Contato</a>
+
         </nav>
+
     </header>
 
+
+    <!-- ============================
+         ÁREA PRINCIPAL
+    ============================= -->
+
     <main>
-        <div class="form-group">
-            <h2>Cadastro de Cliente</h2>
-            <!-- Substitua SEU_ID_FORMSPREE pelo seu código do Formspree -->
-            <form action="https://formspree.io/f/SEU_ID_FORMSPREE" method="POST">
-                <label for="nome">Nome Completo</label>
-                <input type="text" id="nome" name="nome" required>
 
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" required>
+        <section class="cadastro">
 
-                <label for="telefone">Telefone / WhatsApp</label>
-                <input type="tel" id="telefone" name="telefone" required>
+            <h1>Cadastro de Produto</h1>
 
-                <button type="submit" class="btn" style="width: 100%;">Criar Conta</button>
+            <p>
+                Preencha os dados abaixo para cadastrar um produto.
+            </p>
+
+
+            <!-- ============================
+                 FORMULÁRIO
+            ============================= -->
+
+            <form id="formProduto">
+
+
+                <!-- Nome -->
+
+                <label for="nome">
+                    Nome do produto
+                </label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    placeholder="Digite o nome do produto"
+                    required
+                >
+
+
+                <!-- Descrição -->
+
+                <label for="descricao">
+                    Descrição
+                </label>
+
+                <textarea
+                    id="descricao"
+                    name="descricao"
+                    placeholder="Digite a descrição do produto"
+                    rows="5"
+                ></textarea>
+
+
+                <!-- Categoria -->
+
+                <label for="categoria">
+                    Categoria
+                </label>
+
+                <select
+                    id="categoria"
+                    name="categoria"
+                    required
+                >
+
+                    <option value="">
+                        Selecione uma categoria
+                    </option>
+
+                    <option value="Eletrônicos">
+                        Eletrônicos
+                    </option>
+
+                    <option value="Informática">
+                        Informática
+                    </option>
+
+                    <option value="Roupas">
+                        Roupas
+                    </option>
+
+                    <option value="Casa">
+                        Casa
+                    </option>
+
+                    <option value="Esportes">
+                        Esportes
+                    </option>
+
+                    <option value="Outros">
+                        Outros
+                    </option>
+
+                </select>
+
+
+                <!-- Preço de custo -->
+
+                <label for="preco_custo">
+                    Preço de custo
+                </label>
+
+                <input
+                    type="number"
+                    id="preco_custo"
+                    name="preco_custo"
+                    placeholder="0.00"
+                    step="0.01"
+                    min="0"
+                    required
+                >
+
+
+                <!-- Preço de venda -->
+
+                <label for="preco_venda">
+                    Preço de venda
+                </label>
+
+                <input
+                    type="number"
+                    id="preco_venda"
+                    name="preco_venda"
+                    placeholder="0.00"
+                    step="0.01"
+                    min="0"
+                    required
+                >
+
+
+                <!-- Estoque -->
+
+                <label for="estoque">
+                    Quantidade em estoque
+                </label>
+
+                <input
+                    type="number"
+                    id="estoque"
+                    name="estoque"
+                    placeholder="0"
+                    min="0"
+                    required
+                >
+
+
+                <!-- Imagem -->
+
+                <label for="imagem">
+                    URL da imagem
+                </label>
+
+                <input
+                    type="url"
+                    id="imagem"
+                    name="imagem"
+                    placeholder="https://exemplo.com/imagem.jpg"
+                >
+
+
+                <!-- Botão -->
+
+                <button
+                    type="submit"
+                    id="btnSalvar"
+                >
+                    Salvar Produto
+                </button>
+
             </form>
-        </div>
+
+
+            <!-- Mensagem do sistema -->
+
+            <div id="mensagem"></div>
+
+        </section>
+
     </main>
 
+
+    <!-- ============================
+         RODAPÉ
+    ============================= -->
+
     <footer>
-        <p>&copy; 2026 Minha Loja - Todos os direitos reservados.</p>
-    </footer>
-</body>
-</html>
+
+        <p>
+            &copy; 2026 Minha Loja - Todo
+```
